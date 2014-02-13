@@ -5,7 +5,8 @@ class player:
         self.elo = elo
 file_adder = open("playerlist.txt", 'a')
 def addplayer(newplayer):
-    file_adder.write(newplayer + '\n')
+    #player_ = player(newplayer, 1000)
+    #file_adder.write(player_ + '\n')
     file_adder.flush()
 game = []
 file_searcher = open("playerlist.txt", 'r')
@@ -19,14 +20,15 @@ print(file)
 print("Welcome to the foosball bot.\n [n] = add a player [g] = set up a game")
 
 while True:
-    inpuT = input()
-    if inpuT == "n":
-        newplayer_ = input("Please enter the name of the player")
-        addplayer(newplayer_)
-    if inpuT == "g":
+    playerinput = raw_input()
+    if playerinput == 'n':
+        #newplayer_ = input("Please enter the name of the player")
+        #addplayer(newplayer_)
+        print("debug")
+    elif playerinput == 'g':
         i=1
         while i < 5:
-            player = input("please enter player number "+ str(i))
+            player = raw_input("please enter player number "+ str(i))
             checker = file.find(player)
             if checker != -1:
                 print("Player successfully found.")
@@ -61,7 +63,7 @@ while True:
         else:
             print("Player not found. Please try again or add a new player to the database.")"""
             
-    if inpuT == "q":
+    if playerinput == "q":
         file_adder.close()
         break
 
