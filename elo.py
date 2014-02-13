@@ -1,3 +1,4 @@
+#fix: putting in "t" and getting a player
 class player:
     def __init__(self,name, elo):
         self.name = name
@@ -6,10 +7,15 @@ file_adder = open("playerlist.txt", 'a')
 def addplayer(newplayer):
     file_adder.write(newplayer + '\n')
     file_adder.flush()
-player_list = []
-
+game = []
 file_searcher = open("playerlist.txt", 'r')
-file = file_searcher.read()
+cleaner = open('playerlist.txt').read().replace('\n', '')
+file = list(file_searcher)
+
+player_list = file
+file = [line.rstrip('\n') for line in file]
+print(file)
+
 print("Welcome to the foosball bot.\n [n] = add a player [g] = set up a game")
 
 while True:
@@ -18,11 +24,19 @@ while True:
         newplayer_ = input("Please enter the name of the player")
         addplayer(newplayer_)
     if inpuT == "g":
-        for i in range(1,5):
+        i=1
+        while i < 5:
             player = input("please enter player number "+ str(i))
             checker = file.find(player)
             if checker != -1:
                 print("Player successfully found.")
+                game.append(player)
+                if i ==4:
+                    print("players of the game are:",game)
+            else:
+                print("Player not found. Please try again or add a new player to the database.")
+                i = i-1
+            i+=1
         #firstplayerteam1 = input("please enter the first player on Team 1")
         """checker = file.find(firstplayerteam1)
         if checker != -1:
@@ -51,9 +65,11 @@ while True:
         file_adder.close()
         break
 
+
 new_list = []
 for i in range (0,len(player_list)):
     new_list.append(player(player_list[i],1000))
+
 class player:
     def __init__(self,name, elo):
         self.name = name
@@ -67,3 +83,5 @@ if input("Would you like to add a player to the list?(y/n)") == "y":
 new_list = []
 for i in range (0,len(player_list)):
     new_list.append(player(player_list[i],1000))
+
+cleaner.close()
