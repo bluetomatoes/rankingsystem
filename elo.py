@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 class player:
     def __init__(self,name, elo):
         self.name = name
