@@ -9,58 +9,34 @@ def addplayer(newplayer):
     file_adder.flush()
 game = []
 file_searcher = open("playerlist.txt", 'r')
-cleaner = open('playerlist.txt').read().replace('\n', '')
-file = list(file_searcher)
-
-player_list = file
-file = [line.rstrip('\n') for line in file]
-print(file)
-
+playerfile = list(file_searcher)
+playerfile = [line.rstrip('\n') for line in playerfile]
+print(playerfile)
 print("Welcome to the foosball bot.\n [n] = add a player [g] = set up a game")
-
 while True:
-    inpuT = input()
+    inpuT = raw_input()
     if inpuT == "n":
-        newplayer_ = input("Please enter the name of the player")
+        newplayer_ = raw_input("Please enter the name of the player")
         addplayer(newplayer_)
+        
+        playerfile.append(newplayer_)
     if inpuT == "g":
-        i=1
+        i = 1
+        #file_searcher = file_searcher.read()
+        #playerfile = list(file_searcher)
         while i < 5:
-            player = input("please enter player number "+ str(i))
-            checker = file.find(player)
-            if checker != -1:
+            player = raw_input("please enter player number "+ str(i))
+            if player in playerfile:
                 print("Player successfully found.")
                 game.append(player)
-                if i ==4:
+                if i == 4:
                     print("players of the game are:",game)
             else:
                 print("Player not found. Please try again or add a new player to the database.")
-                i = i-1
+                i-=1
             i+=1
         #firstplayerteam1 = input("please enter the first player on Team 1")
-        """checker = file.find(firstplayerteam1)
-        if checker != -1:
-            print("Player successfully found.")
-            secondplayerteam1 = input("please enter the second player on Team 1")
-            if checker != -1:
-                print("Player successfully found.")
                 
-                if checker != -1:
-                    print("Player successfully found.")
-                    firstplayerteam2 = input("please enter the first player on Team 2")
-                    checker = file.find(firstplayerteam2)
-                    if checker != -1:
-                        print("Player successfully found.")
-                        secondplayerteam2 = input("please enter the second player on Team 2")
-                    else:
-                       print("Player not found. Please try again or add a new player to the database.") 
-                else:
-                    print("Player not found. Please try again or add a new player to the database.")
-            else:
-                print("Player not found. Please try again or add a new player to the database.")
-        else:
-            print("Player not found. Please try again or add a new player to the database.")"""
-            
     if inpuT == "q":
         file_adder.close()
         break
