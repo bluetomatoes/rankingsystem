@@ -6,7 +6,11 @@ file_adder = open("playerlist.txt", 'a')
 def addplayer(newplayer):
     #player_ = player(newplayer, 1000)
 <<<<<<< HEAD
+<<<<<<< HEAD
     file_adder.write(newplayer + '\n')
+=======
+    #file_adder.write(player_ + '\n')
+>>>>>>> 0a62633f97950158635f97584798e24d0aff0213
 =======
     #file_adder.write(player_ + '\n')
 >>>>>>> 0a62633f97950158635f97584798e24d0aff0213
@@ -18,6 +22,7 @@ playerfile = [line.rstrip('\n') for line in playerfile]
 print(playerfile)
 print("Welcome to the foosball bot.\n [n] = add a player [g] = set up a game")
 while True:
+<<<<<<< HEAD
 <<<<<<< HEAD
     inpuT = raw_input()
     if inpuT == "n":
@@ -39,6 +44,17 @@ while True:
         i=1
         while i < 5:
             player = raw_input("please enter player number "+ str(i))
+=======
+    playerinput = raw_input()
+    if playerinput == 'n':
+        #newplayer_ = input("Please enter the name of the player")
+        #addplayer(newplayer_)
+        print("debug")
+    elif playerinput == 'g':
+        i=1
+        while i < 5:
+            player = raw_input("please enter player number "+ str(i))
+>>>>>>> 0a62633f97950158635f97584798e24d0aff0213
             checker = file.find(player)
             if checker != -1:
 >>>>>>> 0a62633f97950158635f97584798e24d0aff0213
@@ -78,6 +94,9 @@ while True:
             print("Player not found. Please try again or add a new player to the database.")"""
             
     if playerinput == "q":
+<<<<<<< HEAD
+>>>>>>> 0a62633f97950158635f97584798e24d0aff0213
+=======
 >>>>>>> 0a62633f97950158635f97584798e24d0aff0213
         file_adder.close()
         break
