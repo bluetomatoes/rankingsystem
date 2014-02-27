@@ -1,6 +1,5 @@
 #todo:
     #add [s] functionality
-    #fix bug where one player can be entered twice
 import time
 class player:
     def __init__(self,name, elo):
@@ -49,8 +48,15 @@ while True:
                 print("LET THE GAMES BEGIN!!!! Press [c] to cancel.")
                 game_on = True
                 while i == 4:
-                    game_input = raw_input("The game is in progress. \n [s] = enter the score [c] = cancel game")
-                    if game_input == 'c':
+                    ingame_input = raw_input("The game is in progress. \n [s] = enter the score [c] = cancel game")
+                    if ingame_input == 's':
+                        i=5
+                        gametype_input = raw_input("What type of game? [3/5]")
+                        if gametype_input == '3':
+                            score_input = raw_input("Now tell me the score, in the form of x,y. X is the score of the first 2 players and y is the score of the second 2 players.")
+                            score_input.split(',')
+                            print(score_input)
+                    if ingame_input == 'c':
                         del game[:]
                         print("\nGame canceled. Why the F**K did you set it up in the first place?\n")
                         i = 5
