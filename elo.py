@@ -1,5 +1,6 @@
 #todo:
-    #add [s] functionality
+    #add elo functionality
+    #add game history, winning streak boards
 import time
 class player:
     def __init__(self,name, elo):
@@ -58,22 +59,40 @@ while True:
                         i=5
                         gametype_input = raw_input("What type of game? [3/5]")
                         score_checker()
-                        if real_score[0] > 3 or real_score[1] > 3:
-                            print("Your score is too high. Don't try to trick me.")
-                            del real_score[:]
-                            score_checker()
-                        elif real_score[0] < 0 or real_score[1] < 0:
-                            print("Your score is too low. Do you even know what positive numbers are?")
-                            del real_score[:]
-                            score_checker()
-                        else:
-                            del game[:]
-                            del real_score[:]
-                            print("Game over. Thanks for playing....\n")
-                            time.sleep(1)
-                            print("Actually, I couldn't care less if you played.\n")
-                            time.sleep(0.5)
-                            run()
+                        if gametype_input ==5:
+                            if real_score[0] > 5 or real_score[1] > 5:
+                                print("Your score is too high. Don't try to trick me.")
+                                del real_score[:]
+                                score_checker()
+                            elif real_score[0] < 0 or real_score[1] < 0:
+                                print("Your score is too low. Do you even know what positive numbers are?")
+                                del real_score[:]
+                                score_checker()
+                            else:
+                                del real_score[:]
+                                print("Game over. Good job to "+game[0]+" and " + game[1] + " for winning. Thanks for playing....\n")
+                                time.sleep(1)
+                                del game[:]
+                                print("Actually, I couldn't care less if you played.\n")
+                                time.sleep(0.5)
+                                run()
+                        if gametype_input == 3:
+                            if real_score[0] > 3 or real_score[1] > 3:
+                                print("Your score is too high. Don't try to trick me.")
+                                del real_score[:]
+                                score_checker()
+                            elif real_score[0] < 0 or real_score[1] < 0:
+                                print("Your score is too low. Do you even know what positive numbers are?")
+                                del real_score[:]
+                                score_checker()
+                            else: 
+                                del real_score[:]
+                                print("Game over. Good job to "+game[0]+" and " + game[1] + " for winning. Thanks for playing....\n")
+                                time.sleep(1)
+                                del game[:]
+                                print("Actually, I couldn't care less if you played.\n")
+                                time.sleep(0.5)
+                                run()                           
                     if ingame_input == 'c':
                         del game[:]
                         print("\nGame canceled. Why the F**K did you set it up in the first place?\n")
