@@ -19,7 +19,12 @@ print(playerfile)
 def run():
     print("Welcome to the foosball bot.\n [n] = add a player [g] = set up a game")
 run()
-
+real_score = []
+def score_checker():
+    score_input = raw_input("Now tell me the score, in the form of x,y. X is the score of the first 2 players and y is the score of the second 2 players.")
+    split_score = score_input.split(',')
+    real_score.append(int(score_input.split(',')[0]))
+    real_score.append(int(score_input.split(',')[1]))
 while True:
     inpuT = raw_input()
     if inpuT == "n":
@@ -52,20 +57,31 @@ while True:
                     if ingame_input == 's':
                         i=5
                         gametype_input = raw_input("What type of game? [3/5]")
-                        if gametype_input == '3':
-                            score_input = raw_input("Now tell me the score, in the form of x,y. X is the score of the first 2 players and y is the score of the second 2 players.")
-                            score_input.split(',')
-                            print(score_input)
+                        score_checker()
+                        if real_score[0] > 3 or real_score[1] > 3:
+                            print("Your score is too high. Don't try to trick me.")
+                            del real_score[:]
+                            score_checker()
+                        elif real_score[0] < 0 or real_score[1] < 0:
+                            print("Your score is too low. Do you even know what positive numbers are?")
+                            del real_score[:]
+                            score_checker()
+                        else:
+                            del game[:]
+                            del real_score[:]
+                            print("Game over. Thanks for playing....\n")
+                            time.sleep(1)
+                            print("Actually, I couldn't care less if you played.\n")
+                            time.sleep(0.5)
+                            run()
                     if ingame_input == 'c':
                         del game[:]
                         print("\nGame canceled. Why the F**K did you set it up in the first place?\n")
                         i = 5
                         time.sleep(0.5)
-                        run()
-                        
+                        run()                        
             i+=1
         #firstplayerteam1 = input("please enter the first player on Team 1")
-
     elif inpuT == "q":
         file_adder.close()
         break
