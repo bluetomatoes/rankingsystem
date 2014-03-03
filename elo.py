@@ -59,7 +59,8 @@ while True:
                         i=5
                         gametype_input = raw_input("What type of game? [3/5]")
                         score_checker()
-                        if gametype_input ==5:
+                        if int(gametype_input) == 5:
+                            print("5 received")
                             if real_score[0] > 5 or real_score[1] > 5:
                                 print("Your score is too high. Don't try to trick me.")
                                 del real_score[:]
@@ -76,7 +77,8 @@ while True:
                                 print("Actually, I couldn't care less if you played.\n")
                                 time.sleep(0.5)
                                 run()
-                        if gametype_input == 3:
+                        elif int(gametype_input) == 3:
+                            print("gametype_received")
                             if real_score[0] > 3 or real_score[1] > 3:
                                 print("Your score is too high. Don't try to trick me.")
                                 del real_score[:]
