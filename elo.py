@@ -15,7 +15,6 @@ file_searcher = open("playerlist.txt", 'r')
 playerfile = list(file_searcher)
 playerfile = [line.rstrip('\n') for line in playerfile]
 playerfile = [line.split(' ,')[0] for line in playerfile]
-
 print(playerfile)
 def run():
     print("Welcome to the foosball bot.\n [n] = add a player [g] = set up a game")
@@ -26,6 +25,7 @@ def score_checker():
     split_score = score_input.split(',')
     real_score.append(int(score_input.split(',')[0]))
     real_score.append(int(score_input.split(',')[1]))
+def update_elo():
 while True:
     inpuT = raw_input()
     if inpuT == "n":
@@ -59,6 +59,9 @@ while True:
                         i=5
                         gametype_input = raw_input("What type of game? [3/5]")
                         score_checker()
+                        print("Updating player elo...")
+                        update_elo()
+                        
                         if int(gametype_input) == 5:
                             print("5 received")
                             if real_score[0] > 5 or real_score[1] > 5:
@@ -70,6 +73,7 @@ while True:
                                 del real_score[:]
                                 score_checker()
                             else:
+                                #always team 1 wins, never team2
                                 del real_score[:]
                                 print("Game over. Good job to "+game[0]+" and " + game[1] + " for winning. Thanks for playing....\n")
                                 time.sleep(1)
