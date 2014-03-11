@@ -7,15 +7,24 @@ class player:
         self.name = name
         self.elo = elo
 file_adder = open("playerlist.txt", 'a')
-def addplayer(newplayer, elo):
-    file_adder.write(newplayer + " , " + str(elo) + ',' + '\n')
-    file_adder.flush()
+
 game = []
+winners =[]
+losers = []
 file_searcher = open("playerlist.txt", 'r')
 playerfile = list(file_searcher)
 playerfile = [line.rstrip('\n') for line in playerfile]
-playerfile = [line.split(' ,')[0] for line in playerfile]
+playerfile = [line.split(' ,')[1] for line in playerfile]
 print(playerfile)
+def file_len(fname):
+    with open(fname) as f:
+        for i, l in enumerate(f):
+            pass
+    return i + 2
+def addplayer(newplayer, elo):
+    playernum = file_len("playerlist.txt")
+    file_adder.write(str(playernum) + ',' + newplayer + " , " + str(elo) + ',' + '\n')
+    file_adder.flush()
 def run():
     print("Welcome to the foosball bot.\n [n] = add a player [g] = set up a game")
 run()
@@ -25,7 +34,7 @@ def score_checker():
     split_score = score_input.split(',')
     real_score.append(int(score_input.split(',')[0]))
     real_score.append(int(score_input.split(',')[1]))
-def update_elo():
+ 
 while True:
     inpuT = raw_input()
     if inpuT == "n":
@@ -59,8 +68,6 @@ while True:
                         i=5
                         gametype_input = raw_input("What type of game? [3/5]")
                         score_checker()
-                        print("Updating player elo...")
-                        update_elo()
                         
                         if int(gametype_input) == 5:
                             print("5 received")
@@ -74,9 +81,16 @@ while True:
                                 score_checker()
                             else:
                                 #always team 1 wins, never team2
-                                del real_score[:]
-                                print("Game over. Good job to "+game[0]+" and " + game[1] + " for winning. Thanks for playing....\n")
+                                if real_score[0] > real_score[1]:
+                                    print("Game over. Good job to "+game[0]+" and " + game[1] + " for winning. Thanks for playing....\n")
+                                    winners.append(game[0],game[1])
+                                    losers.append(game[2],game[3])
+                                elif real_score[0] < real_score[1]:
+                                    print("Game over. Good job to "+game[2]+" and " + game[3] + " for winning. Thanks for playing....\n")
+                                    winners.append(game[2],game[3])
+                                    losers.append(game[0],game[1])
                                 time.sleep(1)
+                                del real_score[:]
                                 del game[:]
                                 print("Actually, I couldn't care less if you played.\n")
                                 time.sleep(0.5)
