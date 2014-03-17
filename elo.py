@@ -6,34 +6,33 @@ class player:
     def __init__(self,name, elo):
         self.name = name
         self.elo = elo
-file_adder = open("playerlist.txt", 'a')
-
+open('playertest.txt', 'w').close()
 game = []
 winners =[]
 losers = []
 file_searcher = open("playerlist.txt", 'r')
 playerfile = list(file_searcher)
 playerfile = [line.rstrip('\n') for line in playerfile]
-elofile = [line.split(' ,')[2] for line in playerfile]
-playerfile = [line.split(' ,')[1] for line in playerfile]
+elofile = [line.split(' ,')[1] for line in playerfile]
+playerfile = [line.split(' ,')[0] for line in playerfile]
 player_scores = {}
-print(elofile)
-
+print(playerfile)
 #for number items in playefile
     #player_scores[player] = playerfile[i]
 for p in range(0,len(playerfile)):
     player = playerfile[p]
     player_scores[player] = elofile[p]
-print(player_scores['Tom'])
-def file_len(fname):
-    with open(fname) as f:
-        for i, l in enumerate(f):
-            pass
-    return i + 2
-def addplayer(newplayer, elo):
-    playernum = file_len("playerlist.txt")
-    file_adder.write(str(playernum) + ',' + newplayer + " ," + str(elo) + ', '+'\n')
+#print(player_scores['Matthew'])
+        
+def addplayer(newplayer, elo, file_name):
+    file_adder = open(file_name, 'a')
+
+    file_adder.write(newplayer + " ," + str(elo) + '\n')
     file_adder.flush()
+def test():
+    assert 'John' not in playerfile
+    addplayer('John', 1000,'playertest.txt' )
+    assert 'John' in playerfile
 def run():
     print("Welcome to the foosball bot.\n [n] = add a player [g] = set up a game")
 run()
@@ -47,11 +46,10 @@ def update_elo():
     
     pass
 while True:
-    
     inpuT = raw_input()
     if inpuT == "n":
         newplayer_ = raw_input("Please enter the name of the player")
-        addplayer(newplayer_, 1000)
+        addplayer(newplayer_, 1000, 'playerlist.txt')
         playerfile.append(newplayer_)
         print("In case you were too stupid to remember the person you just entered into our \n database, the new playerfile is \n" + str(playerfile))
     elif inpuT == 'g':
