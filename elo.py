@@ -14,8 +14,17 @@ losers = []
 file_searcher = open("playerlist.txt", 'r')
 playerfile = list(file_searcher)
 playerfile = [line.rstrip('\n') for line in playerfile]
+elofile = [line.split(' ,')[2] for line in playerfile]
 playerfile = [line.split(' ,')[1] for line in playerfile]
-print(playerfile)
+player_scores = {}
+print(elofile)
+
+#for number items in playefile
+    #player_scores[player] = playerfile[i]
+for p in range(0,len(playerfile)):
+    player = playerfile[p]
+    player_scores[player] = elofile[p]
+print(player_scores['Tom'])
 def file_len(fname):
     with open(fname) as f:
         for i, l in enumerate(f):
@@ -23,7 +32,7 @@ def file_len(fname):
     return i + 2
 def addplayer(newplayer, elo):
     playernum = file_len("playerlist.txt")
-    file_adder.write(str(playernum) + ',' + newplayer + " , " + str(elo) + ',' + '\n')
+    file_adder.write(str(playernum) + ',' + newplayer + " ," + str(elo) + ', '+'\n')
     file_adder.flush()
 def run():
     print("Welcome to the foosball bot.\n [n] = add a player [g] = set up a game")
@@ -34,8 +43,11 @@ def score_checker():
     split_score = score_input.split(',')
     real_score.append(int(score_input.split(',')[0]))
     real_score.append(int(score_input.split(',')[1]))
- 
+def update_elo():
+    
+    pass
 while True:
+    
     inpuT = raw_input()
     if inpuT == "n":
         newplayer_ = raw_input("Please enter the name of the player")

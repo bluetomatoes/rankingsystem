@@ -1,3 +1,4 @@
-1 ,Matthew ,1000
-2,Tom , 1000,
-3,Jimmy , 1000,
+1 ,Matthew ,1000,
+2 ,Tom , 1000,
+3 ,Jimmy ,1000,
+4,Bob ,1000, 
