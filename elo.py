@@ -16,7 +16,7 @@ playerfile = [line.rstrip('\n') for line in playerfile]
 elofile = [line.split(' ,')[1] for line in playerfile]
 playerfile = [line.split(' ,')[0] for line in playerfile]
 player_scores = {}
-print(playerfile)
+print(elofile)
 #for number items in playefile
     #player_scores[player] = playerfile[i]
 for p in range(0,len(playerfile)):
@@ -43,7 +43,7 @@ def score_checker():
     real_score.append(int(score_input.split(',')[0]))
     real_score.append(int(score_input.split(',')[1]))
 def update_elo():
-    
+    winners[0]
     pass
 while True:
     inpuT = raw_input()
